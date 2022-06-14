@@ -12,3 +12,15 @@
         return formName.length >= MIN_LENGTH_NAME;
       };
 
+    onButtonClick = (e) => {
+        e.preventDefault();
+        const { formName } = this.state;
+        const { history } = this.props;
+
+        this.setState(
+            { loading: true },
+            () => createUser({name: formName})
+            .then(() => history.push('search')),
+        );
+    };
+
